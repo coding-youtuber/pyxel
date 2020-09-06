@@ -101,6 +101,7 @@ class App:
         return (x, y, kind, is_active)
 
     def draw(self):
+        # clear screen
         pyxel.cls(12)
 
         # draw sky
