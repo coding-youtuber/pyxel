@@ -1,21 +1,38 @@
+# 乱数のライブラリを読み込む
 from random import randint
-
+# pyxelを読み込む
 import pyxel
 
 
 class App:
+    """
+    Appクラス
+    """
     def __init__(self):
+        """
+        クラスからインスタンスを生成する時に最初の呼ばれる関数
+        """
+
+        # Gameを初期化、画面作成
         pyxel.init(160, 120, caption="Pyxel Jump")
 
+        # 素材画像を読み込む
         pyxel.load("assets/jump_game.pyxres")
 
+        # スコア
         self.score = 0
+        # playerのX座標
         self.player_x = 72
+        # playerのY座標
         self.player_y = -16
+        # playerのY方向の速度。vはvelocity（速度）
         self.player_vy = 0
+        # playerの生死を管理するフラグ。TrueまたはFalseが入る。
         self.player_is_alive = True
 
+        # 背景の遠い雲の座標
         self.far_cloud = [(-10, 75), (40, 65), (90, 60)]
+        # 背景の近い雲の座標
         self.near_cloud = [(10, 25), (70, 35), (120, 15)]
         self.floor = [(i * 60, randint(8, 104), True) for i in range(4)]
         self.fruit = [(i * 60, randint(0, 104), randint(0, 2), True) for i in range(4)]
@@ -101,6 +118,7 @@ class App:
         return (x, y, kind, is_active)
 
     def draw(self):
+        # clear screen
         pyxel.cls(12)
 
         # draw sky
